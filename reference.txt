@@ -1,0 +1,146 @@
+Reference 1:
+
+```{python}
+#| echo: false
+
+import numpy as np
+
+# Calculate Kelly Criterion for this investment game
+# Game parameters:
+# - Heads (50% probability): gain 50% (multiply by 1.5)
+# - Tails (50% probability): lose 40% (multiply by 0.6)
+
+p = 0.5  # Probability of winning (heads)
+q = 0.5  # Probability of losing (tails)
+win_multiplier = 1.5  # If heads: balance * 1.5
+loss_multiplier = 0.6  # If tails: balance * 0.6
+
+# Kelly Criterion formula: f* = (p × b - q) / b
+# Where b is the net odds (gain rate)
+# For this game: if you bet fraction f and win, you get (1 + f*b)
+# If you bet f and lose, you get (1 - f*loss_rate)
+
+# Alternative calculation: Kelly fraction maximizes log growth
+# Expected log return = p × ln(1 + f × gain) + q × ln(1 - f × loss)
+# Gain rate = 0.5 (50% gain), Loss rate = 0.4 (40% loss)
+
+# Kelly Criterion for multiplicative outcomes
+# If you bet fraction f of your balance:
+# - Win: balance becomes (1-f) + f×1.5 = 1 + 0.5f
+# - Lose: balance becomes (1-f) + f×0.6 = 1 - 0.4f
+# Kelly maximizes: p×ln(1 + 0.5f) + q×ln(1 - 0.4f)
+# Taking derivative and setting to zero:
+# p×0.5/(1+0.5f) = q×0.4/(1-0.4f)
+# Solving: 0.25/(1+0.5f) = 0.2/(1-0.4f)
+# 0.25(1-0.4f) = 0.2(1+0.5f)
+# 0.25 - 0.1f = 0.2 + 0.1f
+# 0.05 = 0.2f
+# f = 0.25 = 25%
+
+gain_rate = 0.5  # 50% gain on win
+loss_rate = 0.4  # 40% loss on loss
+
+# Expected return per bet
+expected_return = p * gain_rate - q * loss_rate
+
+# Kelly fraction calculation
+kelly_fraction = 0.25  # 25% (calculated from maximizing log growth)
+
+# Alternative calculation using log optimization
+# We want to maximize: p*ln(1 + f*0.5) + q*ln(1 - f*0.4)
+# Taking derivative and setting to zero gives us the Kelly fraction
+
+print("="*80)
+print("KELLY CRITERION ANALYSIS")
+print("="*80)
+print(f"\nGame Parameters:")
+print(f"  Probability of winning (heads): {p:.1%}")
+print(f"  Probability of losing (tails): {q:.1%}")
+print(f"  Gain on win: {gain_rate:.1%} (multiply by 1.5)")
+print(f"  Loss on loss: {loss_rate:.1%} (multiply by 0.6)")
+
+print(f"\nKelly Criterion Calculation:")
+print(f"  Expected return per bet: {expected_return:.1%}")
+print(f"  Kelly optimal fraction: {kelly_fraction:.1%}")
+print(f"  This means: bet {kelly_fraction:.1%} of your balance each round")
+
+print(f"\nInterpretation:")
+if kelly_fraction > 0:
+    print(f"  • The Kelly Criterion suggests betting {kelly_fraction:.1%} of your balance")
+    print(f"  • This maximizes long-term growth rate")
+    print(f"  • Betting more than {kelly_fraction:.1%} increases risk without increasing growth")
+    print(f"  • Betting less than {kelly_fraction:.1%} is safer but suboptimal for growth")
+else:
+    print(f"  • The Kelly fraction is negative or zero")
+    print(f"  • This suggests the game has negative expected value")
+    print(f"  • The optimal strategy would be to not bet at all")
+
+print(f"\nComparison to Our Strategies:")
+print(f"  • Original strategy: bets 100% of balance (full risk)")
+print(f"  • Modified strategy: bets 50% of balance (partial risk)")
+print(f"  • Kelly optimal: bets {kelly_fraction:.1%} of balance")
+print(f"\n  • The modified strategy ({50:.1%}) is {'closer' if abs(50 - kelly_fraction*100) < abs(100 - kelly_fraction*100) else 'farther'} to the Kelly optimal")
+print(f"    than the original strategy (100%)")
+
+print("="*80)
+```
+
+**Explanation:**
+
+The **Kelly Criterion** is a mathematical formula that determines the optimal fraction of your capital to bet in repeated favorable gambles to maximize long-term growth rate. Developed by John Kelly in 1956, it balances the trade-off between maximizing returns and avoiding ruin.
+
+**For this investment game:**
+- Heads (50% chance): gain 50% → win multiplier = 1.5
+- Tails (50% chance): lose 40% → loss multiplier = 0.6
+
+The Kelly formula calculates the optimal betting fraction as approximately **25%** of your balance each round. This maximizes the expected logarithmic growth of your wealth over time by balancing the potential gains against the risk of losses.
+
+
+Reference 2:
+
+For a bet with probability $p$ of winning and probability $q = 1-p$ of losing, where a win multiplies your bet by $b$ and a loss multiplies your bet by $-a$ (where $a$ is the loss fraction), the Kelly fraction is:
+
+$$f^* = \frac{p \cdot b - q \cdot a}{b \cdot a}$$
+
+In our investment game:
+- Probability of heads (win): $p = 0.5$
+- Probability of tails (loss): $q = 0.5$
+- Win multiplier: $b = 0.5$ (gain 50%)
+- Loss multiplier: $a = 0.4$ (lose 40%)
+
+The Kelly fraction would be:
+$$f^* = \frac{0.5 \times 0.5 - 0.5 \times 0.4}{0.5 \times 0.4} = \frac{0.25 - 0.2}{0.2} = \frac{0.05}{0.2} = 0.25 = 25\%$$
+
+**How this relates to the modified strategy:** The modified strategy uses exactly 25%—the Kelly fraction! That's no accident. Kelly tells us this is the optimal bet size for maximizing long-term growth while avoiding ruin.
+
+**Key insights:**
+1. **The modified strategy follows Kelly**: By betting 25%, we're theoretically maximizing growth rate while keeping risk manageable.
+
+2. **Why the original strategy fails**: Betting 100% is way over the Kelly fraction. This "overbetting" creates massive volatility and risk of ruin, even though each flip has positive expected value. More isn't always better—optimal sizing matters.
+
+3. **The trade-off**: Kelly reduces your maximum upside (no lottery tickets) but dramatically improves your chances of coming out ahead. It's about sustainable growth, not moonshots.
+
+The Kelly Criterion shows why the modified strategy works better for long-term wealth building. Expected value alone isn't enough—you need the right bet size to actually realize those gains over time.
+
+Reference 3:
+
+$$
+f^* = \frac{bp - q}{b}
+$$
+
+
+Where:
+
+- $f^*$ = optimal fraction of capital to bet
+- $b$ = odds received on the bet (e.g., 0.5 for a 50% gain)
+- $p$ = probability of winning
+- $q = 1 - p$ = probability of losing
+
+
+#### 🧠 How It Relates to the Partial Strategy
+
+By risking only half the balance each year, the partial strategy mirrors the Kelly Criterion’s principle of **fractional betting**. It avoids overexposure to volatility and preserves capital, leading to more consistent outcomes. This approach aligns with Kelly’s goal: **maximize geometric growth, not just expected value**.
+
+> ***In essence, the partial-risk strategy is a practical approximation of Kelly-optimal behavior—balancing upside potential with downside protection.***
+
+:::
