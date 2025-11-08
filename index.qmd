@@ -653,8 +653,7 @@ display(Markdown(summary))
 ```
 
 ### 6) Briefly Explain Your Findings From The Previous Step in Light of A Concept Known as the "Kelly Criterion"
- 
-#### Kelly Criterion Summary
+
 
 ```{python}
 #| label: q6-kelly-criterion
@@ -677,7 +676,7 @@ full_risk_growth = p * np.log(1 + gain * 1.0) + (1 - p) * np.log(1 - loss * 1.0)
 half_risk_growth = p * np.log(1 + gain * 0.5) + (1 - p) * np.log(1 - loss * 0.5)
 
 kelly_summary = f"""
-**Kelly Criterion Diagnostics**
+**Kelly Criterion Summary**
 
 * Kelly-optimal fraction to stake each flip: {kelly_fraction:.1%}
 * Expected log-growth at the Kelly fraction: {kelly_growth:.4f} per flip
