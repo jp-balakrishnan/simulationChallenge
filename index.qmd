@@ -1,6 +1,6 @@
 ---
 title: "Simulation Challenge"
-subtitle: "Starter Template with To-Dos"
+subtitle: "Investment Simulation Analysis"
 format:
   html: default
 execute:
@@ -8,23 +8,7 @@ execute:
   eval: true
 ---
 
-# 🎲 Simulation Challenge - Starter Template
-
-:::: {.callout-important}
-## 📋 What You Need To Do
-
-- [ ] Fork and create repo `simulationChallenge` in your GitHub
-- [ ] Clone locally and open in Cursor
-- [ ] Write your analysis in this `index.qmd`
-- [ ] Render to HTML (`quarto render` or Render button)
-- [ ] Push HTML to your repo and enable GitHub Pages
-- [ ] Share your site: `https://[your-username].github.io/simulationChallenge/`
-:::
-
-:::: {.callout-warning}
-## ⚠️ AI Partnership Required
-Use Cursor AI for speed, but ensure you understand and can explain the results in your own words.  Verify cursor's calculations as investment simulation is tricky.
-:::
+# 🎲 Simulation Challenge
 
 ## The Investment Game (Brief)
 
@@ -76,30 +60,28 @@ investmentDAG.show()
 
 ## Analysis Tasks (Fill These In)
 
-::::: {.callout-note}
-## Grading Scope
-
-- Sections 1–4: required and can earn up to 90% of the grade.
-- Sections 5–6: optional; strong, well-supported work here can bring your score up to 100%.
-::::
-
 ### 1) Expected Value After 1 Flip
 
 What is the gain in expected value as a percentage of your buy-in? Does this simple analysis suggest you should buy-in to the game?
+
+Expected Value Calculation: 0.5 * 1.5 * 30000 + 0.5 * 0.6 * 30000 = $31,500.00
 
 ```{python}
 #| label: q1-expected-value-py
 #| echo: false
 
 # Compute EV after one flip in Python
-# Show calculation and brief explanation
+# Show calculation and brief explanation using markdown format
 EV = 0.5 * 1.5 * 30000 + 0.5 * 0.6 * 30000
+print(f"Initial balance: ${30000:,.2f}")
+print(f"Heads outcome: ${45000:,.2f}")
+print(f"Tails outcome: ${18000:,.2f}")
 print(f"Expected value after one flip: ${EV:,.2f}")
 print(f"Gain in expected value: ${EV - 30000:,.2f} ({((EV - 30000) / 30000) * 100:.2f}%)")
-print(f"\nThe expected value of your account balance after one flip is ${EV:,.2f}.")
-print("This is less than $30,000, so you should not buy-in to the game based on expected value alone.")
 
 ```
+#### Expected Value Analysis
+This is an outcome for a single flip, not for the entire game. Here on each flip 50% gain and 40% loss, we can predict final outcome as profitable or not based on probability so you should not buy-in to the game based on expected value alone.
 
 ### 2) Single Simulation Over Time (Narrative + Plot)
 
