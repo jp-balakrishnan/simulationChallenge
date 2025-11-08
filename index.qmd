@@ -575,7 +575,6 @@ else:
 summary_block = f"""
 ### **Original vs Modified Strategy (50% at Risk)**
 
-# align below original strategy and modified strategy in a table format for quarto markdown
 | Strategy | Mean Final Balance | Median Final Balance | Standard Deviation | Minimum | Maximum | P(final > ${starting_balance:,}) | Profitable Simulations |
 |----------|-------------------|---------------------|--------------------|---------|---------|--------------------------------|------------------------|
 | Original | ${orig_mean:,.2f} | ${orig_median:,.2f} | ${orig_std:,.2f} | ${orig_min:,.2f} | ${orig_max:,.2f} | {orig_prob_gain:.2%} | {np.sum(original_balances > starting_balance)}/{n_simulations} |
@@ -655,7 +654,7 @@ display(Markdown(summary))
 
 ### 6) Briefly Explain Your Findings From The Previous Step in Light of A Concept Known as the "Kelly Criterion"
  
-### Kelly Criterion Summary
+#### Kelly Criterion Summary
 
 ```{python}
 #| label: q6-kelly-criterion
@@ -679,10 +678,11 @@ half_risk_growth = p * np.log(1 + gain * 0.5) + (1 - p) * np.log(1 - loss * 0.5)
 
 kelly_summary = f"""
 **Kelly Criterion Diagnostics**
-- Kelly-optimal fraction to stake each flip: {kelly_fraction:.1%}
-- Expected log-growth at the Kelly fraction: {kelly_growth:.4f} per flip
-- Expected log-growth when staking 100% (original game): {full_risk_growth:.4f} per flip
-- Expected log-growth when staking 50% (modified strategy): {half_risk_growth:.4f} per flip
+
+* Kelly-optimal fraction to stake each flip: {kelly_fraction:.1%}
+* Expected log-growth at the Kelly fraction: {kelly_growth:.4f} per flip
+* Expected log-growth when staking 100% (original game): {full_risk_growth:.4f} per flip
+* Expected log-growth when staking 50% (modified strategy): {half_risk_growth:.4f} per flip
 """
 
 print(kelly_summary)
