@@ -274,6 +274,55 @@ This means that in 27 out of 100 simulations, you would be profitable.</code></p
 <div id="q5-modified-50pct-py-2" class="cell-output cell-output-display cell-output-markdown">
 <section id="original-vs-modified-strategy-50-at-risk" class="level3">
 <h3 class="anchored" data-anchor-id="original-vs-modified-strategy-50-at-risk"><strong>Original vs Modified Strategy (50% at Risk)</strong></h3>
+</section>
+<section id="align-below-original-strategy-and-modified-strategy-in-a-table-format-for-quarto-markdown" class="level1">
+<h1>align below original strategy and modified strategy in a table format for quarto markdown</h1>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 22%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Strategy</th>
+<th>Mean Final Balance</th>
+<th>Median Final Balance</th>
+<th>Standard Deviation</th>
+<th>Minimum</th>
+<th>Maximum</th>
+<th>P(final &gt; $30,000)</th>
+<th>Profitable Simulations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Original</td>
+<td>$41,422.34</td>
+<td>$2,101.32</td>
+<td>$196,035.97</td>
+<td>$4.92</td>
+<td>$1,832,209.90</td>
+<td>18.00%</td>
+<td>18/100</td>
+</tr>
+<tr class="even">
+<td>Modified</td>
+<td>$57,339.82</td>
+<td>$24,000.00</td>
+<td>$85,218.37</td>
+<td>$675.54</td>
+<td>$545,696.82</td>
+<td>48.00%</td>
+<td>48/100</td>
+</tr>
+</tbody>
+</table>
 <section id="original-strategy-full-balance-at-risk" class="level4">
 <h4 class="anchored" data-anchor-id="original-strategy-full-balance-at-risk">Original Strategy (Full Balance at Risk)</h4>
 <ul>
@@ -350,13 +399,13 @@ This means that in 27 out of 100 simulations, you would be profitable.</code></p
 <section id="briefly-explain-your-findings-from-the-previous-step-in-light-of-a-concept-known-as-the-kelly-criterion" class="level3">
 <h3 class="anchored" data-anchor-id="briefly-explain-your-findings-from-the-previous-step-in-light-of-a-concept-known-as-the-kelly-criterion">6) Briefly Explain Your Findings From The Previous Step in Light of A Concept Known as the “Kelly Criterion”</h3>
 </section>
-</section>
-<section id="kelly-criterion-summary" class="level2">
-<h2 class="anchored" data-anchor-id="kelly-criterion-summary">Kelly Criterion Summary</h2>
+<section id="kelly-criterion-summary" class="level3">
+<h3 class="anchored" data-anchor-id="kelly-criterion-summary">Kelly Criterion Summary</h3>
 <div id="q6-kelly-criterion" class="cell" data-execution_count="10">
 <p><strong>Kelly Criterion Diagnostics</strong> - Kelly-optimal fraction to stake each flip: 25.0% - Expected log-growth at the Kelly fraction: 0.0062 per flip - Expected log-growth when staking 100% (original game): -0.0527 per flip - Expected log-growth when staking 50% (modified strategy): 0.0000 per flip</p>
 </div>
 <p>The Kelly Criterion is a bankroll-management rule that maximizes long-run wealth by choosing the bet fraction that maximizes expected log returns. In this coin-flip game, the optimal Kelly fraction is about 25.0%, so a Kelly bettor would stake roughly one-third of their bankroll each flip. Risking the entire balance (the original strategy) pushes the log-growth rate negative (-0.0527 per flip), which matches the histogram evidence of many wipeouts. Halving the stake to 50% raises the log-growth rate to 0.0000 per flip, moving closer to the Kelly-optimal path while still allowing meaningful upside. Practitioners often bet below the strict Kelly level to guard against streaks and model error; the modified strategy mirrors that prudence by always sheltering half of the account.</p>
+</section>
 </section>
 </section>
 
