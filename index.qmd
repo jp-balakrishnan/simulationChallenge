@@ -244,9 +244,10 @@ else:
 print(f"""Starting with ${initial_balance:,.2f}, the simulation ran through {N} coin flips. Out of {N} flips, {num_gains} resulted in gains (heads: +50%) and {num_losses} resulted in losses (tails: -40%).
 
 **Key Moments:**
-- Maximum balance: ${max_balance:,.2f} reached at coin flip {max_flip}
-- Minimum balance: ${min_balance:,.2f} reached at coin flip {min_flip}
-- Final balance: ${final_balance:,.2f} after {N} coin flips
+
+* Maximum balance: ${max_balance:,.2f} reached at coin flip {max_flip}
+* Minimum balance: ${min_balance:,.2f} reached at coin flip {min_flip}
+* Final balance: ${final_balance:,.2f} after {N} coin flips
 
 {assessment_text}
 
